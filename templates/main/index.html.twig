@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mongo Entities{% endblock %}
+
+{% block body %}
+    <nav>
+        <div class="nav-wrapper teal lighten-2">
+            <form method="get" action="{{ path('index') }}">
+                <div class="input-field">
+                    <input id="search" type="search" name="findString">
+                    <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                    <i class="material-icons">close</i>
+                </div>
+            </form>
+        </div>
+    </nav>
+
+    <h1>Mongo Entities</h1>
+
+    <table class="table highlight">
+        <tbody>
+        {% for mongo_entity in mongo_entities %}
+            <tr>
+                <td>{{ mongo_entity|json_encode() }}</td>
+                <td>
+                    <a href="{{ path('show', {'id': mongo_entity._id|trans}) }}" class="btn-floating btn-small waves-effect waves-light"><i class="material-icons">remove_red_eye</i>show</a>
+                    <a href="{{ path('edit', {'id': mongo_entity._id|trans}) }}" class="btn-floating btn-small waves-effect waves-light"><i class="material-icons">edit</i>edit</a>
+                </td>
+                <td>{{ include('main/_delete_form.html.twig') }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">You have no records in Mongo DataBase or didn't set up DataBase parameters</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="row" style="margin-top: 10px">
+        <div class="col s6 m6 l6">
+            <a href="{{ path('db_settings') }}" class="waves-effect waves-light btn"><i class="material-icons left">lock_outline</i>DataBase parameters</a>
+        </div>
+        <div class="col s6 m6 l6 right-align">
+            <a href="{{ path('new') }}" class="waves-effect waves-light btn"><i class="material-icons left">add</i>Create new</a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,5 @@
+<form method="post" action="{{ path('delete', {'id': mongo_entity._id|trans}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ mongo_entity._id|trans) }}">
+    <button class="btn-floating btn-small waves-effect waves-light amber"><i class="material-icons">delete</i>Delete</button>
+</form>

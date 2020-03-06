@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+            <link type="text/css" rel="stylesheet" href="{{ asset('styles/materialize/css/materialize.min.css') }}"  media="screen,projection"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        {% endblock %}
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+        {% block javascripts %}
+            <script type="text/javascript" src="{{ asset('styles/materialize/js/materialize.min.js') }}"></script>
+        {% endblock %}
+    </body>
+</html>

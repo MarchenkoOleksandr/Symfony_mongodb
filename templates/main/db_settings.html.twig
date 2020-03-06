@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DataBase settings{% endblock %}
+
+{% block body %}
+    <div class="row" style="margin-top: 50px">
+        <div class="card-panel hoverable col s12 m12 l10 offset-l1 yellow lighten-3">
+            <h4>Set or change database connection parameters</h4>
+            <form method="POST" action="{{ path('db_settings') }}">
+                <div class="input-field col s12 m12 l12">
+                    <i class="material-icons prefix">mode_edit</i>
+                    <input id="connection_string" type="text" name="connection_string" class="validate"
+                              required="" aria-required="true" value="{{ dbParameters.connectionString }}">
+                    <label for="connection_string">Connection string</label>
+                    <span class="helper-text" data-error="Set connection string" data-success="right"></span>
+                </div>
+                <div class="input-field col s12 m6 l6">
+                    <i class="material-icons prefix">mode_edit</i>
+                    <input id="db_name" type="text" name="db_name" class="validate" required="" aria-required="true" value="{{ dbParameters.dbName }}">
+                    <label for="db_name">Database name</label>
+                    <span class="helper-text" data-error="Set database name" data-success="right"></span>
+                </div>
+                <div class="input-field col s12 m6 l6">
+                    <i class="material-icons prefix">mode_edit</i>
+                    <input id="collection_name" type="text" name="collection_name" class="validate" required=""
+                           aria-required="true" value="{{ dbParameters.collectionName }}">
+                    <label for="collection_name">Collection name</label>
+                    <span class="helper-text" data-error="Set collection name" data-success="right"></span>
+                </div>
+                <!-- Buttons -->
+                <div class="row">
+                    <div class="col s12 m6 l6">
+                        <a href="{{ path('index') }}" class="waves-effect waves-light btn"><i
+                                    class="material-icons left">cancel</i>cancel</a>
+                    </div>
+                    <div class="col s12 m6 l6 right-align">
+                        <button class="btn btn-lg btn-primary" type="submit">
+                            Submit
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mongo Entity{% endblock %}
+
+{% block body %}
+    <h1>Mongo Entity</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ mongo_entity._id|trans }}</td>
+            </tr>
+            <tr>
+                <th>Body</th>
+                <td>{{ mongo_entity|json_encode() }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="row" style="margin-top: 10px">
+        <div class="col s6 m6 l6">
+            <a href="{{ path('index') }}" class="waves-effect waves-light btn"><i class="material-icons left">arrow_back</i>back to list</a>
+        </div>
+        <div class="col s6 m6 l6 right-align">
+            <a href="{{ path('edit', {'id': mongo_entity._id|trans}) }}" class="waves-effect waves-light btn"><i class="material-icons left">edit</i>edit</a>
+        </div>
+    </div>
+
+{% endblock %}
