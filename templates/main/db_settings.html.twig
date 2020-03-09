@@ -17,14 +17,14 @@
                 <div class="input-field col s12 m6 l6">
                     <i class="material-icons prefix">mode_edit</i>
                     <input id="db_name" type="text" name="db_name" class="validate" required="" aria-required="true" value="{{ dbParameters.dbName }}">
-                    <label for="db_name">Database name</label>
+                    <label for="db_name">Database name *</label>
                     <span class="helper-text" data-error="Set database name" data-success="right"></span>
                 </div>
                 <div class="input-field col s12 m6 l6">
                     <i class="material-icons prefix">mode_edit</i>
                     <input id="collection_name" type="text" name="collection_name" class="validate" required=""
                            aria-required="true" value="{{ dbParameters.collectionName }}">
-                    <label for="collection_name">Collection name</label>
+                    <label for="collection_name">Collection name *</label>
                     <span class="helper-text" data-error="Set collection name" data-success="right"></span>
                 </div>
                 <!-- Buttons -->
@@ -41,6 +41,9 @@
                     </div>
                 </div>
             </form>
+        </div>
+        <div class="col s12 m12 l10 offset-l1">
+            * If you want to create new DataBase and/or Collection, please set the names of the new DataBase and/or Collection here and after that add new data to it.
         </div>
     </div>
 {% endblock %}
