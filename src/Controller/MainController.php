@@ -28,16 +28,19 @@ class MainController extends AbstractController
     public function index(Request $request)
     {
         $findString = $request->query->get('findString');
-        $findArray = json_decode($findString, true) ?? [];
+        $findArray  = json_decode($findString, true) ?? [];
 
-        $collection = $this->getMongoClient();
-        $entities   = $collection ? $collection->find($findArray)->toArray() : [];
-
-        return $this->render('main/index.html.twig', [
-            'mongo_entities' => $entities,
-            'findString' => $findString,
-            'isFindStringIncorrect' => !empty($findString) && empty($findArray)
-        ]);
+        try {
+            $collection = $this->getMongoClient();
+            $entities   = $collection->find($findArray)->toArray();
+        }
+        finally {
+            return $this->render('main/index.html.twig', [
+                'mongo_entities'        => $entities ?? [],
+                'findString'            => $findString,
+                'isFindStringIncorrect' => !empty($findString) && empty($findArray)
+            ]);
+        }
     }
 
     /**
@@ -164,7 +167,7 @@ class MainController extends AbstractController
      */
     private function getMongoClient()
     {
-        list($connectionString, $dbName, $collectionName) = array_values($this->getDbParameters());
+        [$connectionString, $dbName, $collectionName] = array_values($this->getDbParameters());
 
         try {
             return (new Client($connectionString))->$dbName->$collectionName;
