@@ -7,13 +7,17 @@
         <div class="nav-wrapper teal lighten-2">
             <form method="get" action="{{ path('index') }}">
                 <div class="input-field">
-                    <input id="search" type="search" name="findString">
+                    <input id="search" type="search" name="findString" value="{{ findString }}">
                     <label class="label-icon" for="search"><i class="material-icons">search</i></label>
                     <i class="material-icons">close</i>
                 </div>
             </form>
         </div>
     </nav>
+
+    {% if isFindStringIncorrect == true %}
+        <script>window.onload = onPageLoad;</script>
+    {% endif %}
 
     <h1>Mongo Entities</h1>
 

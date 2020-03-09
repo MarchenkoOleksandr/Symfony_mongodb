@@ -27,13 +27,16 @@ class MainController extends AbstractController
      */
     public function index(Request $request)
     {
-        $findArray = json_decode($request->query->get('findString'), true) ?? [];
+        $findString = $request->query->get('findString');
+        $findArray = json_decode($findString, true) ?? [];
 
         $collection = $this->getMongoClient();
         $entities   = $collection ? $collection->find($findArray)->toArray() : [];
 
         return $this->render('main/index.html.twig', [
             'mongo_entities' => $entities,
+            'findString' => $findString,
+            'isFindStringIncorrect' => !empty($findString) && empty($findArray)
         ]);
     }
 
