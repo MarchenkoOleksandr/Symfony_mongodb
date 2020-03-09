@@ -15,6 +15,14 @@ function validateJsonBySubmit() {
     }
 }
 
+function validateConnectionString() {
+        let connectionString = document.getElementById("connection_string").value;
+        if (!connectionString.startsWith("mongodb+srv://") && !connectionString.startsWith("mongodb://")){
+            event.preventDefault();
+            M.toast({html: 'The connection string should starts with "mongodb+srv://" or "mongodb://"!'});
+        }
+}
+
 function onPageLoad() {
     M.toast({html: 'Please check the correctness of your search query!'});
 }
